@@ -1,37 +1,25 @@
 CakePHP 3.x Helpers for Bootstrap 3
 ===================================
 
+Forked form [Holt59/cakephp3-bootstrap3-helpers](https://github.com/Holt59/cakephp3-bootstrap3-helpers)
+
+Improved some of the code for my projects.
+
 CakePHP 3.0 Helpers to generate HTML with @Twitter Boostrap 3: `Html`, `Form`, `Modal` and `Paginator` helpers available!
-
-<i>This is the new repository for my CakePHP Bootstrap 3 Helpers (CakePHP 2.0 repository here: https://github.com/Holt59/cakephp-bootstrap3-helpers).</i>
-
-Do not hesitate to...
- - **Post a github issue** if you find a bug or want a new feature.
- - **Send me a message** if you have troubles installing or using the plugin.
 
 Installation
 ============
+Clone the repository into your `plugins/Bootstrap3` folder.
 
-Run
-`composer require holt59/cakephp3-bootstrap3-helpers:dev-master`
-or add the following into your composer.json and run `composer update`.
-```json
-"require": {
-  "holt59/cakephp3-bootstrap3-helpers": "dev-master"
-}
-```
-
-If you do not use `composer`, simply clone the repository into your `plugins/Bootstrap3` folder.
-
-Don't forget to load the plugin in your `/config/bootstrap.php` file:
+Load the plugin in your `/config/bootstrap.php` file:
 ```php
-Plugin::load('Bootstrap3');
+Plugin::load('Bootstrap3', ['autoload' => true]);
 ```
 
 How to use?
 ===========
 
-Just add Helper files into your View/Helpers directory and load the helpers in you controller:
+Add Helper files into your View/Helpers directory and load the helpers in you controller:
 ```php
 public $helpers = [
     'Html' => [
@@ -177,7 +165,7 @@ You can also set column widths for different screens:
 ```php
 echo $this->Form->create($myModal, [
     'horizontal' => true,
-    'cols' => [ 
+    'cols' => [
         'sm' => [
             'label' => 4,
             'input' => 4,
@@ -210,16 +198,16 @@ echo $this->Form->dropdownButton('My Dropdown', [
 New options available when creating input to prepend / append button or text to input:
 ```php
 echo $this->Form->input('mail', [
-    'prepend' => '@', 
+    'prepend' => '@',
     'append' => $this->Form->button('Send')
 ]) ;
 echo $this->Form->input('mail', [
     'append' => [
         $this->Form->button('Button'),
         $this->Form->dropdownButton('Dropdown', [
-            $this->Html->link('A', []), 
+            $this->Html->link('A', []),
             $this->Html->link('B', []),
-            'divider', 
+            'divider',
             $this->Html->link('C', [])
         ])
     ]
@@ -261,7 +249,7 @@ Simple helper to create modal, 3 ways of using it:
 ```php
 <?php
 // Start a modal with a title, default value for 'close' is true
-echo $this->Modal->create("My Modal Form", ['id' => 'MyModal', 'close' => false]) ; 
+echo $this->Modal->create("My Modal Form", ['id' => 'MyModal', 'close' => false]) ;
 ?>
 <p>Here I write the body of my modal !</p>
 <?php
@@ -269,8 +257,8 @@ echo $this->Modal->create("My Modal Form", ['id' => 'MyModal', 'close' => false]
 echo $this->Modal->end() ;
 // It is possible to specify custom buttons:
 echo $this->Modal->end([
-    $this->Form->button('Submit', ['bootstrap-type' => 'primary']),   
-    $this->Form->button('Close', ['data-dismiss' => 'modal']) 
+    $this->Form->button('Submit', ['bootstrap-type' => 'primary']),
+    $this->Form->button('Close', ['data-dismiss' => 'modal'])
 ]);
 ?>
 ```
@@ -286,7 +274,7 @@ Output:
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> -->
         <h4 class="modal-title" id="MyModalLabel">My Modal Form</h4>
       </div>
-      <div class="modal-body ">    
+      <div class="modal-body ">
         <p>Here I write the body of my modal !</p>
       </div>
       <div class="modal-footer ">
@@ -302,11 +290,11 @@ Output:
 ```php
 <?php
 echo $this->Modal->create(['id' => 'MyModal2']) ;
-echo $this->Modal->header('My Title', ['close' => false]) ; 
+echo $this->Modal->header('My Title', ['close' => false]) ;
 echo $this->Modal->body('My Body', ['class' => 'my-body-class']) ;
 echo $this->Modal->footer([
-    $this->Form->button('Submit', ['bootstrap-type' => 'primary']),   
-    $this->Form->button('Close', ['data-dismiss' => 'modal']) 
+    $this->Form->button('Submit', ['bootstrap-type' => 'primary']),
+    $this->Form->button('Close', ['data-dismiss' => 'modal'])
 ]) ;
 echo $this->Modal->end() ;
 ?>
@@ -316,7 +304,7 @@ echo $this->Modal->end() ;
 ```php
 <?php
 echo $this->Modal->create(['id' => 'MyModal3']) ;
-echo $this->Modal->header(['class' => 'my-header-class']) ; 
+echo $this->Modal->header(['class' => 'my-header-class']) ;
 ?>
 <h4>My Header!</h4>
 <?php
