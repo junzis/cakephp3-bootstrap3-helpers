@@ -55,6 +55,8 @@ class BootstrapModalHelper extends Helper {
         }
         $close = $this->_extractOption('close', $options, true);
         unset ($options['close']) ;
+        $large = $this->_extractOption('large', $options, true);
+        unset ($options['large']) ;
         $nobody = $this->_extractOption('no-body', $options, false);
         unset ($options['no-body']) ;
         $options['tabindex'] = $this->_extractOption('tabindex', $options, -1);
@@ -64,7 +66,9 @@ class BootstrapModalHelper extends Helper {
             $this->currentId = $options['id'] ;
             $options['aria-labbeledby'] = $this->currentId.'Label' ;
         }
-		$res = $this->Html->div('modal fade '.$this->_extractOption('class', $options, ''), NULL, $options).$this->Html->div('modal-dialog').$this->Html->div('modal-content');
+		$res = $this->Html->div('modal fade '.$this->_extractOption('class', $options, ''), NULL, $options)
+            .$this->Html->div('modal-dialog '.($large ? 'modal-lg' : ''))
+            .$this->Html->div('modal-content');
         if (is_string($title) && $title) {
             $res .= $this->_createHeader($title, array('close' => $close)) ;
             if (!$nobody) {
